@@ -8,6 +8,7 @@ class DataBoundResource<T> {
   Function fetchFromDatabase = <T>() async => T;
   Function saveCallResult = (T data) => {};
 
+  //TODO: Should fetch (need to fetch from database before create api call)
   DataBoundResource(
       {required this.createCall,
       required this.fetchFromDatabase,

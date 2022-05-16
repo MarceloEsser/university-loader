@@ -1,8 +1,10 @@
 import 'package:commons/model/university.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
 
 class DaoHelper {
+  
+  //TODO: Insert by country
   insert(List<University>? data) async {
     if (_openDatabase() == null) {
       throw Exception("Houve um erro ao gerar o banco de dados");
@@ -26,25 +28,24 @@ class DaoHelper {
       throw Exception("Houve um erro ao gerar o banco de dados");
     }
 
-    return _openDatabase()?.then((database) async {
-      database
+    return _openDatabase()?.then((database) {
+      return database
           .query(University.tableName)
           .then((value) => value.map((i) => University.fromMap(i)).toList())
           .onError((error, stackTrace) => throw stackTrace);
     });
   }
 
-  Future<Database>? _openDatabase() {
-    return getDatabasesPath().then((value) {
-      String path = join(value, 'university_loader.db');
+  Future<Database>? _openDatabase() async {
+    String directory = await getDatabasesPath();
+    String path = p.join(directory.toString(), 'university_loader.db');
 
-      return openDatabase(
-        path,
-        onCreate: (db, version) => _createTable(db),
-        version: 1,
-        onDowngrade: onDatabaseDowngradeDelete,
-      );
-    }).onError((error, stackTrace) => throw stackTrace);
+    return openDatabase(
+      path,
+      onCreate: (db, version) => _createTable(db),
+      version: 1,
+      onDowngrade: onDatabaseDowngradeDelete,
+    );
   }
 
   _createTable(Database db) {
