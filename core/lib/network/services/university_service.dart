@@ -18,7 +18,7 @@ class UniversityService {
   UniversityService(this.dao);
 
   ReceivePort loadUniversities(Country? country) {
-    String countryCode = country?.code ?? "Brazil";
+    String countryCode = country?.name ?? "Brazil";
     var url = Uri.parse(baseUrl + countryCode);
 
     return DataBoundResource<List<University>>(

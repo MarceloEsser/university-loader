@@ -47,10 +47,19 @@ class UniversityScreen extends StatelessWidget {
                             children: [
                               Container(
                                 padding: const EdgeInsets.symmetric(vertical: 10),
-                                child: Text(
-                                  country.name,
-                                  style: GoogleFonts.mukta(fontSize: 24),
-                                  textAlign: TextAlign.center,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      country.flagEmoji,
+                                      style: GoogleFonts.mukta(fontSize: 24),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Text(
+                                      country.name,
+                                      style: GoogleFonts.mukta(fontSize: 24),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
                                 ),
                               ),
                               Container(

@@ -1,3 +1,4 @@
+import 'package:core/country_repository.dart';
 import 'package:core/dao/app_dao.dart';
 import 'package:core/network/services/university_service.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
       ),
       home: BlocProvider(
-        create: (context) => UniversityBloc(UniversityService(AppDao())),
+        create: (context) => UniversityBloc(UniversityService(AppDao()), CountryRepository()),
         child: const UniversityScreen(),
       ),
     );

@@ -24,3 +24,5 @@ flutter:
     androidX: true
     androidPackage: esser.marcelo.univesity.loader.core
     iosBundleIdentifier: esser.marcelo.univesity.loader.core
+#  assets:
+#    - assets/countries.json
